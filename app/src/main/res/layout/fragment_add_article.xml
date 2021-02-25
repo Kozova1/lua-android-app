@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".AddArticleFragment"
+  android:padding="16dp">
+  <TextView
+    android:id="@+id/title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/add_article_below"
+    android:gravity="center"/>
+  <TextView
+    android:id="@+id/articleTitleText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/title_label"
+    android:layout_below="@id/title"
+    android:gravity="start"/>
+  <EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/articleTitle"
+    android:layout_below="@id/articleTitleText"
+    />
+  <TextView
+    android:id="@+id/articleContentText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/content_label"
+    android:layout_below="@id/articleTitle"
+    android:gravity="start"/>
+  <EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/articleContent"
+    android:layout_below="@id/articleContentText"
+    />
+  <CheckBox
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/articleIsHard"
+    android:text="@string/article_is_hard_label"
+    android:layout_below="@id/articleContent"/>
+
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/submitFAB"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentEnd="true"
+    android:layout_marginBottom="16dp"
+    android:layout_marginEnd="16dp"
+    android:src="@drawable/ic_plus_24px"
+    android:contentDescription="@string/add_article" />
+</RelativeLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <group android:checkableBehavior="single">
+    <item
+      android:id="@+id/menu_import"
+      android:checkable="false"
+      android:enabled="false"
+      android:title="@string/import_database"/>
+    <item
+      android:id="@+id/menu_share"
+      android:checkable="false"
+      android:title="@string/share_database" />
+    <item
+      android:id="@+id/menu_export"
+      android:checkable="false"
+      android:title="@string/export_database" />
+  </group>
+</menu>
