@@ -1,83 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".AddExerciseFragment"
-  android:padding="16dp">
-  <TextView
-    android:id="@+id/title"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/add_exercise_below"
-    android:gravity="center"/>
-  <TextView
-    android:id="@+id/exerciseTitleText"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/title_label"
-    android:layout_below="@id/title"
-    android:gravity="start"/>
-  <EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/exerciseTitle"
-    android:layout_below="@id/exerciseTitleText"
-    />
-  <TextView
-    android:id="@+id/exerciseInstructionsText"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/instructions_label"
-    android:layout_below="@id/exerciseTitle"
-    android:gravity="start"/>
-  <EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/exerciseInstructions"
-    android:layout_below="@id/exerciseInstructionsText"
-    />
-  <TextView
-    android:id="@+id/exerciseTestText"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/test_code"
-    android:layout_below="@id/exerciseInstructions"
-    android:gravity="start"/>
-  <EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/exerciseTest"
-    android:layout_below="@id/exerciseTestText"
-    />
-  <TextView
-    android:id="@+id/exerciseTemplateText"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Template:"
-    android:layout_below="@id/exerciseTest"
-    android:gravity="start"/>
-  <EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/exerciseTemplate"
-    android:layout_below="@id/exerciseTemplateText"
-    />
-  <CheckBox
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/exerciseIsHard"
-    android:text="@string/exercise_is_hard"
-    android:layout_below="@id/exerciseTemplate"/>
+  android:fillViewport="true">
 
-  <com.google.android.material.floatingactionbutton.FloatingActionButton
-    android:id="@+id/submitFAB"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_alignParentEnd="true"
-    android:layout_marginBottom="16dp"
-    android:layout_marginEnd="16dp"
-    android:src="@drawable/ic_plus_24px"
-    android:contentDescription="@string/add_exercise" />
-</RelativeLayout>
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".AddExerciseFragment">
+
+    <TextView
+      android:id="@+id/title"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:text="@string/add_exercise_below" />
+
+    <TextView
+      android:id="@+id/exerciseTitleText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/title"
+      android:gravity="start"
+      android:text="@string/title_label" />
+
+    <EditText
+      android:id="@+id/exerciseTitle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/exerciseTitleText" />
+
+    <TextView
+      android:id="@+id/exerciseInstructionsText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/exerciseTitle"
+      android:gravity="start"
+      android:text="@string/instructions_label" />
+
+    <EditText
+      android:id="@+id/exerciseInstructions"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/exerciseInstructionsText" />
+
+    <TextView
+      android:id="@+id/exerciseTestText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/exerciseInstructions"
+      android:gravity="start"
+      android:text="@string/test_code" />
+
+    <EditText
+      android:id="@+id/exerciseTest"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/exerciseTestText" />
+
+    <TextView
+      android:id="@+id/exerciseTemplateText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/exerciseTest"
+      android:gravity="start"
+      android:text="Template:" />
+
+    <EditText
+      android:id="@+id/exerciseTemplate"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/exerciseTemplateText" />
+
+    <CheckBox
+      android:id="@+id/exerciseIsHard"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/exerciseTemplate"
+      android:text="@string/exercise_is_hard" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/submitFAB"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentBottom="true"
+      android:layout_margin="16dp"
+      android:contentDescription="@string/add_exercise"
+      android:src="@drawable/ic_plus_24px" />
+  </RelativeLayout>
+</androidx.core.widget.NestedScrollView>

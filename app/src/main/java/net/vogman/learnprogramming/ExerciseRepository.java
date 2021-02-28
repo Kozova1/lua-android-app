@@ -13,7 +13,7 @@ public class ExerciseRepository {
   ExerciseRepository(Application application) {
     AppDatabase db = AppDatabase.getDatabase(application);
     dao = db.exerciseDao();
-    exercises = dao.loadExcercises();
+    exercises = dao.loadExercises();
   }
 
   LiveData<List<Exercise>> getExercises() {
@@ -30,5 +30,9 @@ public class ExerciseRepository {
     AppDatabase.databaseWriteExecutor.execute(() -> {
       dao.addExercise(exercise);
     });
+  }
+
+  void remove(int id) {
+    AppDatabase.databaseWriteExecutor.execute(() -> dao.remove(id));
   }
 }

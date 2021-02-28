@@ -8,14 +8,14 @@ import androidx.room.PrimaryKey;
 import org.jetbrains.annotations.NotNull;
 
 @Entity
-public class Article {
+public class Article implements Listable {
   /**
    * Create table with this command:
    * CREATE TABLE IF NOT EXISTS Article (
-   *  uid INTEGER PRIMARY KEY NOT NULL,
-   *  Title TEXT,
-   *  ArticleContents TEXT,
-   *  HasBeenRead INTEGER NOT NULL
+   * uid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+   * Title TEXT,
+   * ArticleContents TEXT,
+   * HasBeenRead INTEGER NOT NULL
    * );
    */
   @PrimaryKey(autoGenerate = true)

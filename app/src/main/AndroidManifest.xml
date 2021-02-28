@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="net.vogman.learnprogramming">
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
   <application
     android:allowBackup="true"
     android:fullBackupContent="@xml/backup_rules"
@@ -9,27 +9,16 @@
     android:label="@string/app_name"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
-    android:theme="@style/AppTheme">
-    <provider
-      android:authorities="net.vogman.learnprogramming.fileprovider"
-      android:name="androidx.core.content.FileProvider"
-      android:grantUriPermissions="true"
-      android:exported="false">
-      <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/filepaths" />
-    </provider>
-    <activity android:name=".ArticleViewerActivity" />
-    <activity android:name=".ExerciseViewerActivity" android:windowSoftInputMode="adjustPan" />
+    android:theme="@style/AppTheme.NoActionBar">
+    <activity android:name=".ViewerActivity" />
     <activity
       android:name=".MainActivity"
-      android:theme="@style/AppTheme.NoActionBar"
       android:windowSoftInputMode="adjustPan">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
+
         <category android:name="android.intent.category.LAUNCHER" />
-        <action android:name="android.intent.action.PICK" />
-        <data android:mimeType="application/x-sqlite3" />
+        <category android:name="android.intent.category.DEFAULT" />
       </intent-filter>
     </activity>
   </application>

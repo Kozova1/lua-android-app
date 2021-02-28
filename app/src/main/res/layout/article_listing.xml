@@ -13,7 +13,7 @@
     <TextView
       android:id="@+id/articleListingTitleTextView"
       android:layout_width="wrap_content"
-      android:layout_height="match_parent"
+      android:layout_height="wrap_content"
       android:layout_gravity="center_vertical|start"
       android:text="@string/titlePlaceholder"
       android:textSize="36sp" />
@@ -52,6 +52,18 @@
         android:visibility="invisible" />
 
     </LinearLayout>
+
+    <ImageView
+      android:id="@+id/articleDeleteImageView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentStart="true"
+      android:layout_below="@id/articleListingTitleTextView"
+      android:contentDescription="@string/articleIconDescription"
+      android:scaleType="fitEnd"
+      card_view:srcCompat="@drawable/ic_delete_24px"
+      android:visibility="visible" />
 
   </RelativeLayout>
 </androidx.cardview.widget.CardView>

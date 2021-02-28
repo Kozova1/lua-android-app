@@ -8,27 +8,21 @@ import androidx.recyclerview.widget.ListAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
-public class ExerciseListAdapter extends ListAdapter<Exercise, ExerciseListing>  {
+public class ExerciseListAdapter extends ListAdapter<Exercise, Listing<Exercise>> {
   public ExerciseListAdapter(@NotNull DiffUtil.ItemCallback<Exercise> diffCallback) {
     super(diffCallback);
   }
 
   @Override
-  public void onBindViewHolder(@NonNull ExerciseListing holder, int position) {
+  public void onBindViewHolder(@NonNull Listing<Exercise> holder, int position) {
     Exercise current = getItem(position);
-    holder.title(current.title);
-    holder.done(current.isDone);
-    holder.hard(current.isHard);
-    holder.instructions(current.instructions);
-    holder.template(current.template);
-    holder.id(current.uid);
-    holder.test(current.test);
+    holder.bindTo(current);
   }
 
   @NonNull
   @Override
-  public ExerciseListing onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    return ExerciseListing.create(parent);
+  public Listing<Exercise> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    return Listing.createExercise(parent);
   }
 
   static class ExerciseDiff extends DiffUtil.ItemCallback<Exercise> {

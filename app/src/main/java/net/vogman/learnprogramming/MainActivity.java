@@ -1,18 +1,14 @@
 package net.vogman.learnprogramming;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.FileProvider;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,15 +17,6 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.channels.FileChannel;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -52,12 +39,20 @@ public class MainActivity extends AppCompatActivity {
       int id = item.getItemId();
       if (id == R.id.nav_articles) {
         // Articles selected
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, new ArticleListFragment()).commit();
+        ListFragment frag = new ListFragment();
+        Bundle args = new Bundle();
+        args.putString(ListFragment.LIST_FRAGMENT_TYPE, ListFragment.LIST_FRAGMENT_TYPE_ARTICLE);
+        frag.setArguments(args);
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, frag).commit();
       } else if (id == R.id.nav_home) {
         // Home selected
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
       } else if (id == R.id.nav_exercises) {
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, new ExerciseListFragment()).commit();
+        ListFragment frag = new ListFragment();
+        Bundle args = new Bundle();
+        args.putString(ListFragment.LIST_FRAGMENT_TYPE, ListFragment.LIST_FRAGMENT_TYPE_EXERCISE);
+        frag.setArguments(args);
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, frag).commit();
       } else if (id == R.id.nav_add) {
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, new AddContentFragment()).commit();
       }
@@ -91,85 +86,22 @@ public class MainActivity extends AppCompatActivity {
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
     int itemId = item.getItemId();
-    if (itemId == R.id.menu_share) {
-      // Share database
-      File dbFile = getDatabasePath("AppDB").getAbsoluteFile();
-      File exportDB = new File(getFilesDir(), "AppDB.db");
-      try {
-        exportDB.createNewFile(); // just in case file does not yet exist
-        FileChannel istream = new FileInputStream(dbFile).getChannel();
-        FileChannel ostream = new FileOutputStream(exportDB).getChannel();
-        ostream.transferFrom(istream, 0, istream.size());
-        Uri uri = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".fileprovider", exportDB);
-        Intent i = new Intent(Intent.ACTION_SEND);
-        i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        i.setType("application/vnd.sqlite3");
-        i.putExtra(Intent.EXTRA_STREAM, uri);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(i);
-      } catch (FileNotFoundException e) {
-        Snackbar.make(drawer, "Database file does not exist", BaseTransientBottomBar.LENGTH_SHORT).show();
-        e.printStackTrace();
-      } catch (IOException e) {
-        Snackbar.make(drawer, "Could not read size of Database file", BaseTransientBottomBar.LENGTH_SHORT).show();
-        e.printStackTrace();
-      }
-    } else if (itemId == R.id.menu_import) {
-      Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-      i.addCategory(Intent.CATEGORY_OPENABLE);
-      i.setType("*/*");
-      startActivityForResult(i, 1);
-    } else if (itemId == R.id.menu_export) {
-      // Export database
-
-      Intent i = new Intent(Intent.ACTION_CREATE_DOCUMENT);
-      i.addCategory(Intent.CATEGORY_OPENABLE);
-      i.setType("application/vnd.sqlite3");
-      i.putExtra(Intent.EXTRA_TITLE, "App Database.db");
-      startActivityForResult(i, 1);
-
+    FragmentManager supportFragmentManager = getSupportFragmentManager();
+    if (itemId == R.id.menu_creating_articles) {
+      supportFragmentManager.beginTransaction().replace(R.id.fragment_container, new CreatingArticlesInfoFragment()).commit();
+    } else if (itemId == R.id.menu_creating_exercises) {
+      supportFragmentManager.beginTransaction().replace(R.id.fragment_container, new CreatingExercisesInfoFragment()).commit();
+    } else if (itemId == R.id.menu_reset_database) {
+      new AlertDialog.Builder(this)
+        .setTitle("Confirm Reset")
+        .setMessage("Reset Database?")
+        .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+          AppDatabase.databaseWriteExecutor.execute(AppDatabase.getDatabase(this)::clearAllTables);
+          Snackbar.make(drawer, "Database reset, Restart app for changes to take effect", BaseTransientBottomBar.LENGTH_SHORT).show();
+        })
+        .setNegativeButton(android.R.string.no, null)
+        .show();
     }
     return super.onOptionsItemSelected(item);
-  }
-
-  @Override
-  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
-      // Import request
-      if (data != null) {
-        Uri uri = data.getData();
-        // TODO: make this do something
-        return;
-      }
-    } else if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
-      // Export request
-      if (data != null) {
-        Uri uri = data.getData();
-
-        try {
-          InputStream dbFile = new FileInputStream(getDatabasePath("AppDB"));
-          copy(dbFile, getContentResolver().openOutputStream(uri));
-          dbFile.close();
-        } catch (FileNotFoundException e) {
-          Snackbar.make(drawer, "File not found exception, read stacktrace.", BaseTransientBottomBar.LENGTH_SHORT).show();
-          e.printStackTrace();
-        } catch (IOException e) {
-          Snackbar.make(drawer, "IO exception, read stacktrace.", BaseTransientBottomBar.LENGTH_SHORT).show();
-          e.printStackTrace();
-        }
-        return;
-      }
-    }
-    // Not our request (or result is not OK), forward to superclass.
-    super.onActivityResult(requestCode, resultCode, data);
-  }
-
-  public static void copy(InputStream src, OutputStream dst) throws IOException {
-    // Transfer bytes from in to out
-    byte[] buf = new byte[1024];
-    int len;
-    while ((len = src.read(buf)) > 0) {
-      dst.write(buf, 0, len);
-    }
   }
 }

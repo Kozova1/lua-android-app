@@ -10,25 +10,21 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class ArticleListAdapter extends ListAdapter<Article, ArticleListing> {
+public class ArticleListAdapter extends ListAdapter<Article, Listing<Article>> {
   public ArticleListAdapter(@NotNull DiffUtil.ItemCallback<Article> diffCallback) {
     super(diffCallback);
   }
 
   @Override
-  public void onBindViewHolder(@NonNull ArticleListing holder, int position) {
+  public void onBindViewHolder(@NonNull Listing<Article> holder, int position) {
     Article current = getItem(position);
-    holder.title(current.title);
-    holder.read(current.hasBeenRead);
-    holder.hard(current.isHard);
-    holder.contents(current.contents);
-    holder.id(current.uid);
+    holder.bindTo(current);
   }
 
   @NonNull
   @Override
-  public ArticleListing onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    return ArticleListing.create(parent);
+  public Listing<Article> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    return Listing.createArticle(parent);
   }
 
   static class ArticleDiff extends DiffUtil.ItemCallback<Article> {

@@ -26,4 +26,47 @@
   <string name="import_database">Import Database</string>
   <string name="export_database">Export Database (Save)</string>
   <string name="share_database">Share Database</string>
+  <string name="info_exercises">Info about Exercises</string>
+  <string name="info_articles">Info about Articles</string>
+  <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="creating_articles_info">
+    # Articles\n\
+    Articles are how you will be introduced to new concepts.\n\
+    They are very simple - they explain, with code examples and explanations,
+    how a specific concept works.\n\
+\n\
+    # Creating Articles\n\
+    Articles contain 3 main values:\n\
+    - **Title** - This is the title that appears in the article list. It is recommended to start it with a number,
+                  similar to this: `1. Variables`\n\
+    - **Content** - This is the part that explains the concept. It uses [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) syntax for formatting and highlighting.
+                    It is recommended to add a title at the start of the text, like this: `# Title Goes Here`\n\
+    - **Is hard** - This decides whether the article is considered "Hard". There are no hard requirements for this,
+                    It only changes whether the article appears with a star icon in the article list.
+  </string>
+  <string name="creating_exercises_info">
+    # Exercises\
+    Exercises are how you will be tested on new concepts.\
+    They require you to write code, according to instructions,\
+    so that the preprogrammed test will pass.\
+    \
+    Simply put, this means you will have to write code that does what the instructions ask of you.\
+    \
+    # Creating Exercises\
+    Exercises contain 5 main values:\
+    - **Title** - This is the title that appears in the exercise list. It is recommended to start it with a number,\
+                  similar to this: `1. Variables`\
+    - **Instructions** - This is the part that explains the user what to do. It uses [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) syntax for formatting and highlighting.
+                         It is recommended to add a title at the start of the instructions, like this: `# Title Goes Here`\
+    - **Test** - This is the part that checks the submitted code. It should have a function called `test()`,\
+                 which should not take any parameters. It should return true if the code matches the instructions,\
+                 and return false or crash if it does not. Using `assert()` is great for this case.\
+    - **Template** - This is the part that appears as a template to the user when they first open your exercise.\
+                     It is recommended to not leave this empty. This will be overwritten once they submit a valid solution.\
+    - **Is hard** - This decides whether the exercise is considered "Hard". There are no hard requirements for this,\
+                    It only changes whether the exercise appears with a star icon in the article list.\
+  </string>
+  <string name="reset_local_database">Reset Local Database</string>
+  <string name="exerciseFABIconDescription">Test code</string>
+  <string name="code_goes_here">Code goes here</string>
 </resources>

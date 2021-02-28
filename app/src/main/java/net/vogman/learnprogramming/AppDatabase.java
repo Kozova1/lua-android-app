@@ -22,19 +22,6 @@ public abstract class AppDatabase extends RoomDatabase {
   static final ExecutorService databaseWriteExecutor =
     Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-  public static void importDatabaseDestructively(final Context context, File infile) {
-    synchronized (AppDatabase.class) {
-      INSTANCE.close();
-      context.deleteDatabase(DB_NAME);
-      INSTANCE = null;
-      INSTANCE =
-        Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DB_NAME)
-          .fallbackToDestructiveMigration()
-          .createFromFile(infile)
-          .build();
-    }
-  }
-
   public static AppDatabase getDatabase(final Context context) {
     if (INSTANCE == null) {
       synchronized (AppDatabase.class) {

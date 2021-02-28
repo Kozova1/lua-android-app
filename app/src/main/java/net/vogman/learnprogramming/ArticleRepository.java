@@ -32,4 +32,9 @@ public class ArticleRepository {
       dao.addArticle(article);
     });
   }
+
+
+  public void remove(int id) {
+    AppDatabase.databaseWriteExecutor.execute(() -> dao.remove(id));
+  }
 }

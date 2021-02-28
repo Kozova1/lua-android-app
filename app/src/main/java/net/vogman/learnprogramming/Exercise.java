@@ -5,10 +5,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import org.jetbrains.annotations.NotNull;
-
 @Entity
-public class Exercise {
+public class Exercise implements Listable {
   @PrimaryKey(autoGenerate = true)
   public int uid;
 

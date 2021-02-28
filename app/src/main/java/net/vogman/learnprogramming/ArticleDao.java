@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
@@ -16,6 +17,9 @@ public interface ArticleDao {
   @Query("UPDATE `Article` SET HasBeenRead = :val WHERE uid = :id")
   void markAsRead(int id, boolean val);
 
-  @Insert
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
   void addArticle(Article article);
+
+  @Query("DELETE FROM `Article` WHERE uid = :id")
+  void remove(int id);
 }
