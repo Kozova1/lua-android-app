@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.ListAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-
 public class ArticleListAdapter extends ListAdapter<Article, Listing<Article>> {
   public ArticleListAdapter(@NotNull DiffUtil.ItemCallback<Article> diffCallback) {
     super(diffCallback);

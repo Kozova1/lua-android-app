@@ -25,8 +25,10 @@ public class AddContentFragment extends Fragment {
     rg.setOnCheckedChangeListener((group, checkedId) -> {
       if (checkedId == R.id.add_article_radio) {
         childFM.beginTransaction().replace(R.id.fragment_target, new AddArticleFragment()).commit();
-      } else {
+      } else if (checkedId == R.id.add_exercise_radio){
         childFM.beginTransaction().replace(R.id.fragment_target, new AddExerciseFragment()).commit();
+      } else { // UNREACHABLE
+        throw new IllegalStateException();
       }
     });
 

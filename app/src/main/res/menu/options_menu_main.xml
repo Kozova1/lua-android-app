@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-  <group android:checkableBehavior="single">
-    <item
-      android:id="@+id/menu_creating_articles"
-      android:checkable="false"
-      android:title="@string/info_articles" />
-
-    <item
-      android:id="@+id/menu_creating_exercises"
-      android:checkable="false"
-      android:title="@string/info_exercises" />
+  <group>
 
     <item
       android:id="@+id/menu_reset_database"
-      android:checkable="false"
       android:title="@string/reset_local_database" />
 
+    <item
+      android:id="@+id/menu_share_database"
+      android:title="@string/share_database" />
+
+    <item
+      android:id="@+id/menu_export_database"
+      android:title="@string/save_database" />
+
+    <item
+      android:id="@+id/menu_import_database"
+      android:title="@string/import_database" />
   </group>
 </menu>

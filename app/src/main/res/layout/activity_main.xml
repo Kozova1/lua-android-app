@@ -11,13 +11,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <androidx.appcompat.widget.Toolbar
       android:id="@+id/toolbar"
       android:layout_width="match_parent"
       android:layout_height="?attr/actionBarSize"
       android:background="@drawable/toolbar_bg"
-      android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
+      app:theme="@style/ToolbarTheme"
       app:titleTextColor="@color/primaryTextColor" />
+
 
     <FrameLayout
       android:id="@+id/fragment_container"

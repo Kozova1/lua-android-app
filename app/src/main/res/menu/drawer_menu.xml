@@ -3,21 +3,46 @@
   xmlns:tools="http://schemas.android.com/tools"
   tools:showIn="navigation_view">
   <group android:checkableBehavior="single">
-    <item
-      android:id="@+id/nav_home"
-      android:title="@string/drawer_home"
-      android:icon="@drawable/ic_home_24px" />
-    <item
-      android:id="@+id/nav_articles"
-      android:title="@string/drawer_articles"
-      android:icon="@drawable/ic_article_24px" />
-    <item
-      android:id="@+id/nav_exercises"
-      android:title="@string/drawer_exercises"
-      android:icon="@drawable/ic_exercise_24px" />
-    <item
-      android:id="@+id/nav_add"
-      android:title="@string/add_article_or_exercise"
-      android:icon="@drawable/ic_add_24px" />
+    <item android:title="@string/general" android:id="@+id/general_label">
+      <menu>
+        <group android:checkableBehavior="single">
+          <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_24px"
+            android:title="@string/drawer_home" />
+          <item
+            android:id="@+id/nav_articles"
+            android:icon="@drawable/ic_article_24px"
+            android:title="@string/drawer_articles" />
+          <item
+            android:id="@+id/nav_exercises"
+            android:icon="@drawable/ic_exercise_24px"
+            android:title="@string/drawer_exercises" />
+          <item
+            android:id="@+id/nav_repl"
+            android:icon="@drawable/ic_code_24px"
+            android:title="@string/repl" />
+          <item
+            android:id="@+id/nav_add"
+            android:icon="@drawable/ic_add_24px"
+            android:title="@string/add_article_or_exercise" />
+        </group>
+      </menu>
+    </item>
+    <item android:title="@string/get_info" android:id="@+id/get_info_label">
+      <menu>
+        <group android:checkableBehavior="single">
+          <item
+            android:id="@+id/nav_info_creating_articles"
+            android:icon="@drawable/ic_help_outline_24px"
+            android:title="@string/info_articles" />
+
+          <item
+            android:id="@+id/nav_info_creating_exercises"
+            android:icon="@drawable/ic_help_outline_24px"
+            android:title="@string/info_exercises" />
+        </group>
+      </menu>
+    </item>
   </group>
 </menu>

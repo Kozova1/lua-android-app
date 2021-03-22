@@ -24,13 +24,16 @@
       android:layout_height="wrap_content"
       android:layout_below="@id/title"
       android:gravity="start"
+      android:labelFor="@id/articleTitle"
       android:text="@string/title_label" />
 
     <EditText
       android:id="@+id/articleTitle"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_below="@id/articleTitleText" />
+      android:layout_below="@id/articleTitleText"
+      android:importantForAutofill="no"
+      android:inputType="text|textCapWords" />
 
     <TextView
       android:id="@+id/articleContentText"
@@ -38,13 +41,16 @@
       android:layout_height="wrap_content"
       android:layout_below="@id/articleTitle"
       android:gravity="start"
+      android:labelFor="@id/articleContent"
       android:text="@string/content_label" />
 
     <EditText
       android:id="@+id/articleContent"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_below="@id/articleContentText" />
+      android:layout_below="@id/articleContentText"
+      android:importantForAutofill="no"
+      android:inputType="text|textCapSentences|textMultiLine" />
 
     <CheckBox
       android:id="@+id/articleIsHard"

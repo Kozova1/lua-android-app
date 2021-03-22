@@ -1,21 +1,19 @@
 <resources>
 
-  <style name="AppTheme.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+  <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
     <item name="windowActionBar">false</item>
     <item name="windowNoTitle">true</item>
     <item name="android:statusBarColor">@android:color/transparent</item>
-    <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     <item name="android:windowTranslucentStatus">true</item>
     <item name="android:windowTranslucentNavigation">true</item>
-    <item name="android:actionOverflowButtonStyle">@style/AppTheme.OverFlow</item>
   </style>
 
-  <style name="AppTheme.OverFlow" parent="Widget.AppCompat.ActionButton.Overflow">
-    <item name="android:src">@drawable/ic_3dots_24px</item>
+  <style name="ToolbarTheme" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
+    <!-- Customize color of navigation drawer icon, back arrow and options menu -->
+    <item name="colorControlNormal">@color/primaryTextColor</item>
   </style>
 
-  <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
-    <item name="spinBars">true</item>
-    <item name="color">@color/primaryTextColor</item>
+  <style name="MenuText" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+    <item name="android:textColor">@color/primaryTextColor</item>
   </style>
 </resources>

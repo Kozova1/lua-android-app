@@ -4,7 +4,6 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import java.util.Collections;
 import java.util.List;
 
 public class ArticleRepository {
@@ -22,19 +21,18 @@ public class ArticleRepository {
   }
 
   void markRead(int id, boolean val) {
-    AppDatabase.databaseWriteExecutor.execute(() -> {
-      dao.markAsRead(id, val);
-    });
+    AppDatabase.databaseWriteExecutor.execute(() -> dao.markAsRead(id, val));
   }
 
   void addArticle(Article article) {
-    AppDatabase.databaseWriteExecutor.execute(() -> {
-      dao.addArticle(article);
-    });
+    AppDatabase.databaseWriteExecutor.execute(() -> dao.addArticle(article));
   }
-
 
   public void remove(int id) {
     AppDatabase.databaseWriteExecutor.execute(() -> dao.remove(id));
+  }
+
+  public void clear() {
+    AppDatabase.databaseWriteExecutor.execute(dao::clear);
   }
 }

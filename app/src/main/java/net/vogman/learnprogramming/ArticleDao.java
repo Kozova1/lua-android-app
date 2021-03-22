@@ -2,7 +2,6 @@ package net.vogman.learnprogramming;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -22,4 +21,10 @@ public interface ArticleDao {
 
   @Query("DELETE FROM `Article` WHERE uid = :id")
   void remove(int id);
+
+  @Query("DELETE FROM `Article`")
+  void clear();
+
+  @Insert
+  void insertAll(List<Article> articles);
 }

@@ -10,7 +10,8 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
     android:src="@drawable/ic_code_24px"
-    app:tint="@color/primaryTextColor" />
+    app:tint="@color/primaryTextColor"
+    android:contentDescription="@string/app_icon_description"/>
   <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

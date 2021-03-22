@@ -21,4 +21,10 @@ public interface ExerciseDao {
 
   @Query("DELETE FROM `Exercise` WHERE uid = :id")
   void remove(int id);
+
+  @Query("DELETE FROM `Exercise`")
+  void clear();
+
+  @Insert
+  void insertAll(List<Exercise> exercises);
 }

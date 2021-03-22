@@ -21,18 +21,18 @@ public class ExerciseRepository {
   }
 
   void markAsDone(int id, boolean val, String solution) {
-    AppDatabase.databaseWriteExecutor.execute(() -> {
-      dao.markAsDone(id, val, solution);
-    });
+    AppDatabase.databaseWriteExecutor.execute(() -> dao.markAsDone(id, val, solution));
   }
 
   void addExercise(Exercise exercise) {
-    AppDatabase.databaseWriteExecutor.execute(() -> {
-      dao.addExercise(exercise);
-    });
+    AppDatabase.databaseWriteExecutor.execute(() -> dao.addExercise(exercise));
   }
 
   void remove(int id) {
     AppDatabase.databaseWriteExecutor.execute(() -> dao.remove(id));
+  }
+
+  public void clear() {
+    AppDatabase.databaseWriteExecutor.execute(dao::clear);
   }
 }

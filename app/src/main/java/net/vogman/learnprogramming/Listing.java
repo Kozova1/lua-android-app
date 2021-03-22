@@ -63,6 +63,16 @@ public class Listing<T extends Listable> extends RecyclerView.ViewHolder {
         ArticleRepository repo = new ArticleRepository((Application) view.getContext().getApplicationContext());
         repo.markRead(this.id, hasBeenRead);
       });
+
+      view.findViewById(R.id.deleteImageView).setOnClickListener(v ->
+        new AlertDialog.Builder(view.getContext())
+          .setTitle("Confirm Deletion")
+          .setMessage("Delete this exercise?")
+          .setPositiveButton(android.R.string.yes, (dialog, which) ->
+            new ArticleRepository((Application) view.getContext().getApplicationContext()).remove(this.id))
+          .setNegativeButton(android.R.string.no, null)
+          .show()
+      );
     } else if (type == ListingType.Exercise) {
       typeImageView.setImageResource(R.drawable.ic_exercise_24px);
       view.setOnClickListener(v -> {
@@ -111,7 +121,7 @@ public class Listing<T extends Listable> extends RecyclerView.ViewHolder {
   }
 
   public void bindTo(T bound) {
-    boolean isHard = false;
+    boolean isHard;
     if (listingType == ListingType.Exercise && bound instanceof Exercise) {
       // No binding to articles when selected as exercise!
       Exercise exercise = (Exercise) bound;

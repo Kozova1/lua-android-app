@@ -24,13 +24,16 @@
       android:layout_height="wrap_content"
       android:layout_below="@id/title"
       android:gravity="start"
+      android:labelFor="@id/exerciseTitle"
       android:text="@string/title_label" />
 
     <EditText
       android:id="@+id/exerciseTitle"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_below="@id/exerciseTitleText" />
+      android:layout_below="@id/exerciseTitleText"
+      android:autofillHints="1. Topic"
+      android:inputType="text|textCapWords" />
 
     <TextView
       android:id="@+id/exerciseInstructionsText"
@@ -38,13 +41,16 @@
       android:layout_height="wrap_content"
       android:layout_below="@id/exerciseTitle"
       android:gravity="start"
+      android:labelFor="@id/exerciseInstructions"
       android:text="@string/instructions_label" />
 
     <EditText
       android:id="@+id/exerciseInstructions"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_below="@id/exerciseInstructionsText" />
+      android:layout_below="@id/exerciseInstructionsText"
+      android:importantForAutofill="no"
+      android:inputType="text|textCapSentences|textMultiLine" />
 
     <TextView
       android:id="@+id/exerciseTestText"
@@ -52,13 +58,16 @@
       android:layout_height="wrap_content"
       android:layout_below="@id/exerciseInstructions"
       android:gravity="start"
+      android:labelFor="@id/exerciseTest"
       android:text="@string/test_code" />
 
     <EditText
       android:id="@+id/exerciseTest"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_below="@id/exerciseTestText" />
+      android:layout_below="@id/exerciseTestText"
+      android:importantForAutofill="no"
+      android:inputType="text|textMultiLine|textNoSuggestions" />
 
     <TextView
       android:id="@+id/exerciseTemplateText"
@@ -66,13 +75,16 @@
       android:layout_height="wrap_content"
       android:layout_below="@id/exerciseTest"
       android:gravity="start"
-      android:text="Template:" />
+      android:labelFor="@id/exerciseTemplate"
+      android:text="@string/template_text" />
 
     <EditText
       android:id="@+id/exerciseTemplate"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_below="@id/exerciseTemplateText" />
+      android:layout_below="@id/exerciseTemplateText"
+      android:importantForAutofill="no"
+      android:inputType="text|textNoSuggestions|textMultiLine" />
 
     <CheckBox
       android:id="@+id/exerciseIsHard"
