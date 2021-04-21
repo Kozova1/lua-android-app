@@ -7,10 +7,6 @@
       <menu>
         <group android:checkableBehavior="single">
           <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_home_24px"
-            android:title="@string/drawer_home" />
-          <item
             android:id="@+id/nav_articles"
             android:icon="@drawable/ic_article_24px"
             android:title="@string/drawer_articles" />

@@ -7,14 +7,16 @@ import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.time.LocalDateTime;
+
 @Entity
 public class Article implements Listable {
   /**
    * Create table with this command:
    * CREATE TABLE IF NOT EXISTS Article (
    * uid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-   * Title TEXT,
-   * ArticleContents TEXT,
+   * Title TEXT NOT NULL,
+   * ArticleContents TEXT NOT NULL,
    * HasBeenRead INTEGER NOT NULL
    * );
    */

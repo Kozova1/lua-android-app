@@ -62,6 +62,7 @@ public class ReplFragment extends Fragment implements AutoCloseable {
     }
     this.globalEnv = JsePlatform.standardGlobals();
     globalEnv.STDOUT = pOStream;
+    globalEnv.STDERR = pOStream;
     globalEnv.STDIN = stdin;
     globalEnv.set("java", LuaValue.NIL);
   }
@@ -81,11 +82,12 @@ public class ReplFragment extends Fragment implements AutoCloseable {
       try {
         LuaValue res = globalEnv.load(inputCode).call();
         globalEnv.set("it", res);
-        if (!res.isnil()) stdout.write(("it = " + res.tojstring()).getBytes(StandardCharsets.UTF_8));
+        if (!res.isnil())
+          stdout.write(("it = " + res.tojstring()).getBytes(StandardCharsets.UTF_8));
         stdout.write('\n');
       } catch (LuaError | IOException e) {
         try {
-          stdout.write(e.getMessage().getBytes(StandardCharsets.UTF_8));
+          stdout.write(e.getLocalizedMessage().getBytes(StandardCharsets.UTF_8));
         } catch (IOException ioException) {
           ioException.printStackTrace();
         }

@@ -49,8 +49,8 @@ public class ExerciseFragment extends Fragment {
     final Prism4j prism4j = new Prism4j(new AppGrammarLocator());
 
     final Markwon markwon = Markwon.builder(view.getContext())
-      .usePlugin(SyntaxHighlightPlugin.create(prism4j, Prism4jThemeDarkula.create()))
-      .build();
+            .usePlugin(SyntaxHighlightPlugin.create(prism4j, Prism4jThemeDarkula.create()))
+            .build();
     markwon.setMarkdown(instructionView, instructions);
     codeView = view.findViewById(R.id.code_editor);
     codeView.setText(template);

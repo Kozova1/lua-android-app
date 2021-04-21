@@ -4,9 +4,26 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class Exercise implements Listable {
+  /**
+   * Create table with this command:
+   * CREATE TABLE IF NOT EXISTS Exercise (
+   *  uid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+   *  Title TEXT NOT NULL,
+   *  Test TEXT NOT NULL,
+   *  Instructions TEXT NOT NULL,
+   *  Template TEXT NOT NULL,
+   *  IsDone INTEGER NOT NULL,
+   *  IsHard INTEGER NOT NULL,
+   *
+   * );
+   * */
   @PrimaryKey(autoGenerate = true)
   public int uid;
 

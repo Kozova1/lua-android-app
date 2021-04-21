@@ -1,31 +1,31 @@
 <resources>
-  <string name="app_name">Learn Lua by Example</string>
-  <string name="titlePlaceholder">Title</string>
-  <string name="articleIconDescription">Article Icon</string>
-  <string name="nav_drawer_ClosedName">Closed Navigation Drawer</string>
-  <string name="nav_drawer_OpenName">Open Navigation Drawer</string>
+    <string name="app_name">Learn Lua by Example</string>
+    <string name="titlePlaceholder">Title</string>
+    <string name="articleIconDescription">Article Icon</string>
+    <string name="nav_drawer_ClosedName">Closed Navigation Drawer</string>
+    <string name="nav_drawer_OpenName">Open Navigation Drawer</string>
 
-  <string name="drawer_articles">Articles</string>
-  <string name="drawer_home">Home</string>
-  <string name="home_fragment">To get started, open the hamburger menu.</string>
-  <string name="exercise_icon_text">Exercise Icon</string>
-  <string name="drawer_exercises">Exercises</string>
-  <string name="add_article_or_exercise">Add Article or Exercise</string>
-  <string name="add_article_below">Add Article Below</string>
-  <string name="article_is_hard_label">Article covers advanced concepts</string>
-  <string name="content_label">Content:</string>
-  <string name="title_label">Title:</string>
-  <string name="add_article">Add article</string>
-  <string name="add_article_radio">Add Article</string>
-  <string name="add_exercise_radio">Add Exercise</string>
-  <string name="instructions_label">Instructions:</string>
-  <string name="exercise_is_hard">Exercise covers advanced topics</string>
-  <string name="add_exercise">Add Exercise</string>
-  <string name="test_code">Test code:</string>
-  <string name="add_exercise_below">Add Exercise Below</string>
-  <string name="info_exercises">Exercises</string>
-  <string name="info_articles">Articles</string>
-  <string name="creating_articles_info">
+    <string name="drawer_articles">Articles</string>
+    <string name="drawer_home">Home</string>
+    <string name="home_fragment">To get started, open the hamburger menu.</string>
+    <string name="exercise_icon_text">Exercise Icon</string>
+    <string name="drawer_exercises">Exercises</string>
+    <string name="add_article_or_exercise">Add Article or Exercise</string>
+    <string name="add_article_below">Add Article Below</string>
+    <string name="article_is_hard_label">Article covers advanced concepts</string>
+    <string name="content_label">Content:</string>
+    <string name="title_label">Title:</string>
+    <string name="add_article">Add article</string>
+    <string name="add_article_radio">Add Article</string>
+    <string name="add_exercise_radio">Add Exercise</string>
+    <string name="instructions_label">Instructions:</string>
+    <string name="exercise_is_hard">Exercise covers advanced topics</string>
+    <string name="add_exercise">Add Exercise</string>
+    <string name="test_code">Test code:</string>
+    <string name="add_exercise_below">Add Exercise Below</string>
+    <string name="info_exercises">Exercises</string>
+    <string name="info_articles">Articles</string>
+    <string name="creating_articles_info">
     # Articles\n\
     Articles are how you will be introduced to new concepts.\n\
     They are very simple - they explain, with code examples and explanations,
@@ -40,7 +40,7 @@
     - **Is hard** - This decides whether the article is considered "Hard". There are no hard requirements for this,
                     It only changes whether the article appears with a star icon in the article list.
   </string>
-  <string name="creating_exercises_info">
+    <string name="creating_exercises_info">
     # Exercises\
     Exercises are how you will be tested on new concepts.\
     They require you to write code, according to instructions,\
@@ -62,19 +62,21 @@
     - **Is hard** - This decides whether the exercise is considered "Hard". There are no hard requirements for this,\
                     It only changes whether the exercise appears with a star icon in the article list.\
   </string>
-  <string name="reset_local_database">Reset Local Database</string>
-  <string name="exerciseFABIconDescription">Test code</string>
-  <string name="code_goes_here">Code goes here</string>
-  <string name="app_icon_description">Learn Lua by Example icon</string>
-  <string name="template_text">Template:</string>
-  <string name="get_info">Get Help</string>
-  <string name="general">General</string>
-  <string name="share_database">Share Database</string>
-  <string name="save_database">Save Database</string>
-  <string name="import_database">Import Database</string>
-  <!-- TODO: Remove or change this placeholder text -->
-  <string name="hello_blank_fragment">Hello blank fragment</string>
-  <string name="input_code">Input Code</string>
-  <string name="send_to_repl">Send to REPL</string>
-  <string name="repl">REPL</string>
+    <string name="reset_local_database">Reset Local Database</string>
+    <string name="exerciseFABIconDescription">Test code</string>
+    <string name="code_goes_here">Code goes here</string>
+    <string name="app_icon_description">Learn Lua by Example icon</string>
+    <string name="template_text">Template:</string>
+    <string name="get_info">Get Help</string>
+    <string name="general">General</string>
+    <string name="share_course">Share Course</string>
+    <string name="save_course">Save Course</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="input_code">Input Code</string>
+    <string name="send_to_repl">Send to REPL</string>
+    <string name="repl">REPL</string>
+    <string name="import_course">Import Course</string>
+    <string name="create_course_btn">Create Course</string>
+    <string name="donot_nag">Disable Airplane Notifications</string>
 </resources>

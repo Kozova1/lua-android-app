@@ -25,8 +25,7 @@ public class ListFragment extends Fragment {
     RecyclerView recycler = view.findViewById(R.id.recyclerView);
     recycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-    Bundle args = getArguments();
-    assert args != null;
+    Bundle args = requireArguments();
     String type = args.getString(LIST_FRAGMENT_TYPE);
     if (type.equals(LIST_FRAGMENT_TYPE_ARTICLE)) {
       final ArticleListAdapter adapter = new ArticleListAdapter(new ArticleListAdapter.ArticleDiff());
