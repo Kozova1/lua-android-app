@@ -43,6 +43,18 @@ public class MainActivity extends AppCompatActivity {
   private DrawerLayout drawer;
   private BroadcastReceiver airplaneNagger = null;
 
+  private void setFirstTimeSetupDone() {
+    SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+    SharedPreferences.Editor edit = prefs.edit();
+    edit.putBoolean("firstTimeSetupDone", true);
+    edit.apply();
+  }
+
+  private boolean getFirstTimeSetupDone() {
+    SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+    return prefs.getBoolean("firstTimeSetupDone", false);
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -50,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
 
     FragmentManager supportFragmentManager = getSupportFragmentManager();
 
+    if (!getFirstTimeSetupDone()) {
+        startActivity(new Intent(this, FirstTimeActivity.class));
+        setFirstTimeSetupDone();
+    }
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 

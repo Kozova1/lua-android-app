@@ -21,36 +21,14 @@ import java.io.InputStreamReader;
 
 public class FirstTimeActivity extends AppCompatActivity {
 
-  private void moveToMain() {
-    startActivity(new Intent(this, MainActivity.class));
-    setFirstTimeSetupDone();
-  }
-
-  private void setFirstTimeSetupDone() {
-    SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-    SharedPreferences.Editor edit = prefs.edit();
-    edit.putBoolean("firstTimeSetupDone", true);
-    edit.apply();
-  }
-
-  private boolean getFirstTimeSetupDone() {
-    SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-    return prefs.getBoolean("firstTimeSetupDone", false);
-  }
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_first_time);
 
-    if (getFirstTimeSetupDone()) {
-      moveToMain();
-      return;
-    }
-
     Button skipBtn = findViewById(R.id.create_course_btn);
     Button importBtn = findViewById(R.id.import_course_btn);
-    skipBtn.setOnClickListener(v -> moveToMain());
+    skipBtn.setOnClickListener(v -> finish());
     importBtn.setOnClickListener(v -> {
       Intent i = new Intent(Intent.ACTION_GET_CONTENT);
       i.setType("*/*");
@@ -76,7 +54,7 @@ public class FirstTimeActivity extends AppCompatActivity {
             dao.insertAll(holder.articles);
           });
           Snackbar.make(findViewById(R.id.first_time_parent), "Imported successfully!", BaseTransientBottomBar.LENGTH_SHORT).show();
-          moveToMain();
+          finish();
         }
       } catch (IOException e) {
         e.printStackTrace();
