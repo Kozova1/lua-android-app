@@ -1,19 +1,28 @@
 <resources>
 
-  <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-    <item name="windowActionBar">false</item>
-    <item name="windowNoTitle">true</item>
-    <item name="android:statusBarColor">@android:color/transparent</item>
-    <item name="android:windowTranslucentStatus">true</item>
-    <item name="android:windowTranslucentNavigation">true</item>
-  </style>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
 
-  <style name="ToolbarTheme" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
-    <!-- Customize color of navigation drawer icon, back arrow and options menu -->
-    <item name="colorControlNormal">@color/primaryTextColor</item>
-  </style>
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
+        <!-- Customize color of navigation drawer icon, back arrow and options menu -->
+        <item name="colorControlNormal">@color/primaryTextColor</item>
+    </style>
 
-  <style name="MenuText" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
-    <item name="android:textColor">@color/primaryTextColor</item>
-  </style>
+    <style name="MenuText" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
+    <style name="Widget.AppTheme.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="Widget.AppTheme.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    </style>
 </resources>

@@ -3,6 +3,7 @@ package net.vogman.learnprogramming;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -20,6 +21,20 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class FirstTimeActivity extends AppCompatActivity {
+  private final static String FIRSTTIME_PREF_STRING = "firstTimeSetupDone";
+
+
+  protected static boolean wasFirstTimeSetupDone(Activity act) {
+    SharedPreferences prefs = act.getPreferences(MODE_PRIVATE);
+    return prefs.getBoolean(FIRSTTIME_PREF_STRING, false);
+  }
+
+  protected static void setFirstTimeSetupDone(Activity act) {
+    SharedPreferences prefs = act.getPreferences(MODE_PRIVATE);
+    SharedPreferences.Editor edit = prefs.edit();
+    edit.putBoolean(FIRSTTIME_PREF_STRING, true);
+    edit.apply();
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +56,7 @@ public class FirstTimeActivity extends AppCompatActivity {
       Uri res = data.getData();
       try (InputStream ifs = getContentResolver().openInputStream(res)) {
         try (InputStreamReader reader = new InputStreamReader(ifs)) {
-          Gson gson = new GsonBuilder().setLenient().create();
+          Gson gson = new GsonBuilder().create();
           Course holder = gson.fromJson(reader, Course.class);
           AppDatabase.databaseWriteExecutor.execute(() -> {
             ExerciseDao dao = AppDatabase.getDatabase(this).exerciseDao();
@@ -62,7 +77,7 @@ public class FirstTimeActivity extends AppCompatActivity {
         Snackbar.make(findViewById(R.id.first_time_parent), "Backup is corrupted. Did not import.", BaseTransientBottomBar.LENGTH_SHORT).show();
         e.printStackTrace();
       }
-    } else {
+    } else if (requestCode != 2) {
       super.onActivityResult(requestCode, resultCode, data);
     }
   }

@@ -43,29 +43,25 @@ public class MainActivity extends AppCompatActivity {
   private DrawerLayout drawer;
   private BroadcastReceiver airplaneNagger = null;
 
-  private void setFirstTimeSetupDone() {
-    SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-    SharedPreferences.Editor edit = prefs.edit();
-    edit.putBoolean("firstTimeSetupDone", true);
-    edit.apply();
-  }
-
-  private boolean getFirstTimeSetupDone() {
-    SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-    return prefs.getBoolean("firstTimeSetupDone", false);
-  }
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
+    if (!FirstTimeActivity.wasFirstTimeSetupDone(this)) {
+      Intent i = new Intent(this, FirstTimeActivity.class);
+      startActivity(i);
+      FirstTimeActivity.setFirstTimeSetupDone(this);
+    }
+
+    if (!SplashScreenActivity.wasSplashShownBefore(this)) {
+      Intent i = new Intent(this, SplashScreenActivity.class);
+      startActivity(i);
+      SplashScreenActivity.setSplashShown(this);
+    }
+
     FragmentManager supportFragmentManager = getSupportFragmentManager();
 
-    if (!getFirstTimeSetupDone()) {
-        startActivity(new Intent(this, FirstTimeActivity.class));
-        setFirstTimeSetupDone();
-    }
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 

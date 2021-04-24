@@ -10,18 +10,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FirstTimeActivity" android:noHistory="true" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_splash_screen"
+            android:theme="@style/AppTheme.Fullscreen"/>
+        <activity
+            android:name=".FirstTimeActivity" />
         <activity android:name=".ViewerActivity" />
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.CREATE_DOCUMENT" />
                 <action android:name="android.intent.action.OPEN_DOCUMENT" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.OPENABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
