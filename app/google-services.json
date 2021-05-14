@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "49717733169",
+    "firebase_url": "https://learnprogramming-lua-app-default-rtdb.firebaseio.com",
+    "project_id": "learnprogramming-lua-app",
+    "storage_bucket": "learnprogramming-lua-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49717733169:android:e33448329e0706b1933210",
+        "android_client_info": {
+          "package_name": "net.vogman.learnprogramming"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "49717733169-l9v7e43v6u25oct4tav83am9prui3tj4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBbTM3s7XUSo71ZP0WZ0SxZDNTzKWwUPw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "49717733169-l9v7e43v6u25oct4tav83am9prui3tj4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

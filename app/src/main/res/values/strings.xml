@@ -76,7 +76,7 @@
     <string name="input_code">Input Code</string>
     <string name="send_to_repl">Send to REPL</string>
     <string name="repl">REPL</string>
-    <string name="import_course">Import Course</string>
+    <string name="join_course">Join Course</string>
     <string name="create_course_btn">Create Course</string>
     <string name="donot_nag">Disable Airplane Notifications</string>
     <string name="title_activity_splash_screen">Splash Screen</string>
@@ -93,4 +93,8 @@
         which can use Lua for more granular control over which requests are accepted.
     </string>
     <string name="continue_to_app">Continue to app</string>
+    <string name="course_id">Course ID:</string>
+    <string name="continueToApp">Continue</string>
+    <string name="exit_course">Exit Course</string>
+    <string name="publish_course">Publish Course</string>
 </resources>

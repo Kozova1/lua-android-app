@@ -7,16 +7,13 @@
       android:title="@string/reset_local_database" />
 
     <item
-      android:id="@+id/menu_share_course"
-      android:title="@string/share_course" />
+      android:id="@+id/menu_exit_course"
+      android:title="@string/exit_course" />
 
     <item
-      android:id="@+id/menu_export_course"
-      android:title="@string/save_course" />
+      android:id="@+id/menu_publish_course"
+      android:title="@string/publish_course" />
 
-    <item
-      android:id="@+id/menu_import_course"
-      android:title="@string/import_course" />
     <item
       android:id="@+id/menu_nag_on_airplane_mode"
       android:checkable="true"

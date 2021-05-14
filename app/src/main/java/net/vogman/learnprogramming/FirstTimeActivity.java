@@ -1,38 +1,62 @@
 package net.vogman.learnprogramming;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonSyntaxException;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class FirstTimeActivity extends AppCompatActivity {
-  private final static String FIRSTTIME_PREF_STRING = "firstTimeSetupDone";
+  private final static String IN_COURSE = "isInCourse";
+  private final static String EDITING_COURSE = "isEditingCourse";
 
 
-  protected static boolean wasFirstTimeSetupDone(Activity act) {
+  protected static boolean isInCourse(Activity act) {
     SharedPreferences prefs = act.getPreferences(MODE_PRIVATE);
-    return prefs.getBoolean(FIRSTTIME_PREF_STRING, false);
+    return prefs.getBoolean(IN_COURSE, false);
   }
 
-  protected static void setFirstTimeSetupDone(Activity act) {
+  protected static boolean isEditingCourse(Activity act) {
+    SharedPreferences prefs = act.getPreferences(MODE_PRIVATE);
+    return prefs.getBoolean(EDITING_COURSE, false);
+  }
+
+  protected static void startInCourse(Activity act) {
     SharedPreferences prefs = act.getPreferences(MODE_PRIVATE);
     SharedPreferences.Editor edit = prefs.edit();
-    edit.putBoolean(FIRSTTIME_PREF_STRING, true);
+    edit.putBoolean(IN_COURSE, true);
+    edit.apply();
+  }
+
+  protected static void stopInCourse(Activity act) {
+    SharedPreferences prefs = act.getPreferences(MODE_PRIVATE);
+    SharedPreferences.Editor edit = prefs.edit();
+    edit.putBoolean(IN_COURSE, false);
+    edit.apply();
+  }
+
+  protected static void startEditingCourse(Activity act) {
+    SharedPreferences prefs = act.getPreferences(MODE_PRIVATE);
+    SharedPreferences.Editor edit = prefs.edit();
+    edit.putBoolean(IN_COURSE, true);
+    edit.apply();
+  }
+
+  protected static void stopEditingCourse(Activity act) {
+    SharedPreferences prefs = act.getPreferences(MODE_PRIVATE);
+    SharedPreferences.Editor edit = prefs.edit();
+    edit.putBoolean(IN_COURSE, false);
     edit.apply();
   }
 
@@ -41,44 +65,52 @@ public class FirstTimeActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_first_time);
 
-    Button skipBtn = findViewById(R.id.create_course_btn);
-    Button importBtn = findViewById(R.id.import_course_btn);
-    skipBtn.setOnClickListener(v -> finish());
-    importBtn.setOnClickListener(v -> {
-      Intent i = new Intent(Intent.ACTION_GET_CONTENT);
-      i.setType("*/*");
-      startActivityForResult(i, 2);
-    });
-  }
+    EditText joinCourseId = findViewById(R.id.import_course_id);
+    Button joinCourseBtn = findViewById(R.id.import_course_btn);
+    Button createCourseBtn = findViewById(R.id.create_course_btn);
+    Activity act = this;
 
-  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
-      Uri res = data.getData();
-      try (InputStream ifs = getContentResolver().openInputStream(res)) {
-        try (InputStreamReader reader = new InputStreamReader(ifs)) {
-          Gson gson = new GsonBuilder().create();
-          Course holder = gson.fromJson(reader, Course.class);
-          AppDatabase.databaseWriteExecutor.execute(() -> {
-            ExerciseDao dao = AppDatabase.getDatabase(this).exerciseDao();
-            dao.clear();
-            dao.insertAll(holder.exercises);
-          });
-          AppDatabase.databaseWriteExecutor.execute(() -> {
-            ArticleDao dao = AppDatabase.getDatabase(this).articleDao();
-            dao.clear();
-            dao.insertAll(holder.articles);
-          });
-          Snackbar.make(findViewById(R.id.first_time_parent), "Imported successfully!", BaseTransientBottomBar.LENGTH_SHORT).show();
-          finish();
-        }
-      } catch (IOException e) {
-        e.printStackTrace();
-      } catch (JsonSyntaxException e) {
-        Snackbar.make(findViewById(R.id.first_time_parent), "Backup is corrupted. Did not import.", BaseTransientBottomBar.LENGTH_SHORT).show();
-        e.printStackTrace();
+    joinCourseBtn.setOnClickListener(v -> {
+      if (joinCourseId.getText().length() == 8) {
+        String courseId = joinCourseId.getText().toString();
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference ref = db.getReference(courseId);
+        ref.addValueEventListener(new ValueEventListener() {
+          @Override
+          public void onDataChange(@NonNull DataSnapshot snapshot) {
+            String asJson = snapshot.getValue(String.class);
+            Course course = new Course(asJson);
+            AppDatabase.databaseWriteExecutor.execute(() -> {
+              ArticleDao articleDao = AppDatabase.getDatabase(act).articleDao();
+              ExerciseDao exerciseDao = AppDatabase.getDatabase(act).exerciseDao();
+              articleDao.clear();
+              exerciseDao.clear();
+              articleDao.insertAll(course.articles);
+              exerciseDao.insertAll(course.exercises);
+            });
+            finish();
+          }
+
+          @Override
+          public void onCancelled(@NonNull DatabaseError error) {
+            Snackbar.make(v, "Invalid Course ID!", BaseTransientBottomBar.LENGTH_LONG);
+          }
+        });
+        ref.get();
+      } else {
+        Snackbar.make(v, "Course ID is exactly 8 digits long", BaseTransientBottomBar.LENGTH_LONG).show();
       }
-    } else if (requestCode != 2) {
-      super.onActivityResult(requestCode, resultCode, data);
-    }
+    });
+
+    createCourseBtn.setOnClickListener(v -> {
+      startEditingCourse(this);
+      AppDatabase.databaseWriteExecutor.execute(() -> {
+        ArticleDao articleDao = AppDatabase.getDatabase(act).articleDao();
+        ExerciseDao exerciseDao = AppDatabase.getDatabase(act).exerciseDao();
+        articleDao.clear();
+        exerciseDao.clear();
+      });
+      finish();
+    });
   }
 }
