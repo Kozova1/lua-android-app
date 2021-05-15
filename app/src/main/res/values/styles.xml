@@ -6,6 +6,20 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
+
+    </style>
+
+    <style name="FirstTimeSetupTheme" parent="ThemeOverlay.AppCompat">
+        <item name="buttonStyle">@style/FirstTimeSetupButtonTheme</item>
+        <item name="colorPrimary">#1F4FFF</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+
+    <style name="FirstTimeSetupButtonTheme" parent="ThemeOverlay.AppCompat">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/firsttime_btn_bg</item>
+        <item name="colorPrimary">#1F4FFF</item>
     </style>
 
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
@@ -25,4 +39,5 @@
         <item name="android:background">@color/black_overlay</item>
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
+
 </resources>

@@ -11,25 +11,32 @@
         <TextView
             android:id="@+id/repl_history_target"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@android:color/black"
+            android:textColor="@android:color/white"
+            android:lines="20"
+            android:layout_margin="12dp"
+            android:padding="6dp"
+            android:text="@string/repl_output"/>
 
         <EditText
             android:id="@+id/repl_code_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/repl_history_target"
+            android:textCursorDrawable="@drawable/firsttime_btn_bg"
             android:hint="@string/input_code"
             android:importantForAutofill="no"
             android:inputType="text|textMultiLine|textNoSuggestions" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <ImageButton
             android:id="@+id/repl_send"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_below="@id/repl_code_in"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_margin="16dp"
             android:contentDescription="@string/send_to_repl"
-            android:src="@drawable/ic_wasread_24px" />
+            android:src="@drawable/ic_navigate_next_black_24dp" />
     </RelativeLayout>
 </androidx.core.widget.NestedScrollView>

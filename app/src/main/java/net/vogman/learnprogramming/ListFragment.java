@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class ListFragment extends Fragment {
   public static final String LIST_FRAGMENT_TYPE = "type";
@@ -22,6 +23,7 @@ public class ListFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_list, container, false);
 
+    TextView textView = view.findViewById(R.id.emptyTextView);
     RecyclerView recycler = view.findViewById(R.id.recyclerView);
     recycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
@@ -35,6 +37,14 @@ public class ListFragment extends Fragment {
       viewModel.getArticles().observe(getViewLifecycleOwner(), articles -> {
         articles.sort((article1, article2) -> article1.uid - article2.uid);
         adapter.submitList(articles);
+        textView.setText(R.string.no_articles_yet);
+        if (articles.isEmpty()) {
+          recycler.setVisibility(View.GONE);
+          textView.setVisibility(View.VISIBLE);
+        } else {
+          recycler.setVisibility(View.VISIBLE);
+          textView.setVisibility(View.GONE);
+        }
       });
     } else if (type.equals(LIST_FRAGMENT_TYPE_EXERCISE)) {
       final ExerciseListAdapter adapter = new ExerciseListAdapter(new ExerciseListAdapter.ExerciseDiff());
@@ -44,6 +54,14 @@ public class ListFragment extends Fragment {
       viewModel.getExercises().observe(getViewLifecycleOwner(), exercises -> {
         exercises.sort((exercise1, exercise2) -> exercise1.uid - exercise2.uid);
         adapter.submitList(exercises);
+        textView.setText(R.string.no_exercises_yet);
+        if (exercises.isEmpty()) {
+          recycler.setVisibility(View.GONE);
+          textView.setVisibility(View.VISIBLE);
+        } else {
+          recycler.setVisibility(View.VISIBLE);
+          textView.setVisibility(View.GONE);
+        }
       });
     } else {
       throw new IllegalArgumentException();

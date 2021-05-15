@@ -90,6 +90,10 @@ public class FirstTimeActivity extends AppCompatActivity {
                 ref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (!snapshot.exists()) {
+                            Snackbar.make(v, "Invalid Course ID!", BaseTransientBottomBar.LENGTH_LONG).show();
+                            return;
+                        }
                         String asJson = snapshot.getValue(String.class);
                         Course course = new Course(asJson);
                         AppDatabase.databaseWriteExecutor.execute(() -> {
@@ -105,7 +109,7 @@ public class FirstTimeActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Snackbar.make(v, "Invalid Course ID!", BaseTransientBottomBar.LENGTH_LONG);
+                        Snackbar.make(v, "Invalid Course ID!", BaseTransientBottomBar.LENGTH_LONG).show();
                     }
                 });
                 ref.get();

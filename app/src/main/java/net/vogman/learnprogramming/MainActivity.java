@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
                     ref.setValue(jsonResult);
                     ClipboardManager mgr = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                     mgr.setPrimaryClip(ClipData.newPlainText("Course ID", id));
-                    Snackbar snack = Snackbar.make(drawer, "Course published. ID copied to clipboard.", BaseTransientBottomBar.LENGTH_LONG);
+                    Snackbar snack = Snackbar.make(drawer, "Course published with ID: " + id + ". Copied to clipboard.", BaseTransientBottomBar.LENGTH_LONG);
                     snack.addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
                         @Override
                         public void onDismissed(Snackbar transientBottomBar, int event) {
