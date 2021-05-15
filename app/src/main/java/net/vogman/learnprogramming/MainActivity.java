@@ -59,18 +59,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (!FirstTimeActivity.isInCourse(this)) {
-            Intent i = new Intent(this, FirstTimeActivity.class);
-            startActivity(i);
-            FirstTimeActivity.startInCourse(this);
-        }
-
-        if (!SplashScreenActivity.wasSplashShownBefore(this)) {
-            Intent i = new Intent(this, SplashScreenActivity.class);
-            startActivity(i);
-            SplashScreenActivity.setSplashShown(this);
-        }
-
         FragmentManager supportFragmentManager = getSupportFragmentManager();
 
         Toolbar toolbar = findViewById(R.id.toolbar);

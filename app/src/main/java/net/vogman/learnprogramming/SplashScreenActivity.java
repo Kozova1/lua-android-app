@@ -1,6 +1,7 @@
 package net.vogman.learnprogramming;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Window;
@@ -18,9 +19,21 @@ import io.noties.prism4j.Prism4j;
 
 public class SplashScreenActivity extends AppCompatActivity {
     private static final String SPLASH_PREF_STRING = "splashShown";
+
+    private void moveToNextActivity() {
+        Intent i = new Intent(this, FirstTimeActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+        startActivity(i);
+        finish();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (wasSplashShownBefore(this)) {
+            moveToNextActivity();
+        }
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -28,7 +41,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         FloatingActionButton fab = findViewById(R.id.splash_continue);
-        fab.setOnClickListener(v -> finish());
+        fab.setOnClickListener(v -> {
+            setSplashShown(this);
+            moveToNextActivity();
+        });
 
         TextView splashContentView = findViewById(R.id.splashscreen_content);
         final Prism4j prism4j = new Prism4j(new AppGrammarLocator());

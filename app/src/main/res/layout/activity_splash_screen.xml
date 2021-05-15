@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/fullscreenBackgroundColor"
+    android:background="@drawable/splash_bg"
     android:theme="@style/ThemeOverlay.LearnProgramming.FullscreenContainer"
     tools:context=".SplashScreenActivity">
 
@@ -17,7 +17,7 @@
         android:layout_margin="10dp"
         android:gravity="center"
         android:keepScreenOn="true"
-        android:textColor="?attr/fullscreenTextColor"
+        android:textColor="@color/primaryTextColor"
         android:textSize="20sp"
         android:layout_centerVertical="true"
         android:text="@string/introduction_md"
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/splashscreen_content"
-        android:src="@drawable/ic_wasread_24px"
+        android:src="@drawable/ic_navigate_next_black_24dp"
         android:contentDescription="@string/continue_to_app" />
 
 </RelativeLayout>

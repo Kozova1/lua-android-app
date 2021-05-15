@@ -14,33 +14,19 @@
             android:name=".SplashScreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_splash_screen"
-            android:theme="@style/AppTheme.Fullscreen"/>
-        <activity
-            android:name=".FirstTimeActivity" />
-        <activity android:name=".ViewerActivity" />
-        <activity
-            android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan">
+            android:theme="@style/AppTheme.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.CREATE_DOCUMENT" />
-                <action android:name="android.intent.action.OPEN_DOCUMENT" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.OPENABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="net.vogman.learnprogramming.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/paths" />
-        </provider>
+        <activity android:name=".FirstTimeActivity" />
+        <activity android:name=".ViewerActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

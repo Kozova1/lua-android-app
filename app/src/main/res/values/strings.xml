@@ -80,17 +80,14 @@
     <string name="create_course_btn">Create Course</string>
     <string name="donot_nag">Disable Airplane Notifications</string>
     <string name="title_activity_splash_screen">Splash Screen</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="introduction_md">
         # Learn to Program with Lua\
         Lua is a versatile, yet easy programming language.\
+        \
         This app will help you learn or teach programming with Lua,\
         by creating or completing exercises and following along with the explanations.\
         \
-        Lua is widely used as an embedded language, to script programs written in other languages.\
-        An example for that would be the Nginx web server,\
-        which can use Lua for more granular control over which requests are accepted.
+        Lua is widely used as an embedded language, to script programs written in other languages.
     </string>
     <string name="continue_to_app">Continue to app</string>
     <string name="course_id">Course ID:</string>
