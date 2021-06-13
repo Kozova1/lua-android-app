@@ -1,11 +1,9 @@
 package net.vogman.learnprogramming;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.FileProvider;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
@@ -17,7 +15,6 @@ import android.content.ClipboardManager;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.TextAppearanceSpan;
@@ -31,16 +28,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonSyntaxException;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.util.Random;
 
 
@@ -49,9 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private BroadcastReceiver airplaneNagger = null;
 
     private void finishCourse() {
-        FirstTimeActivity.stopEditingCourse(this);
-        FirstTimeActivity.stopInCourse(this);
-        recreate();
+        FirstTimeActivity.endCourse(getApplicationContext());
+        startActivity(new Intent(this, FirstTimeActivity.class));
     }
 
     @Override

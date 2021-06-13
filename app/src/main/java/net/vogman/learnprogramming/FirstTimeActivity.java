@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -20,7 +22,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class FirstTimeActivity extends AppCompatActivity {
     private final static String IN_COURSE = "isInCourse";
-    private final static String EDITING_COURSE = "isEditingCourse";
 
     private void moveToNextActivity() {
         Intent i = new Intent(this, MainActivity.class);
@@ -29,39 +30,20 @@ public class FirstTimeActivity extends AppCompatActivity {
         finish();
     }
 
-    protected static boolean isInCourse(Activity act) {
-        SharedPreferences prefs = act.getPreferences(MODE_PRIVATE);
+    protected static boolean isInCourse(Context ctx) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
         return prefs.getBoolean(IN_COURSE, false);
     }
 
-    protected static boolean isEditingCourse(Activity act) {
-        SharedPreferences prefs = act.getPreferences(MODE_PRIVATE);
-        return prefs.getBoolean(EDITING_COURSE, false);
-    }
-
-    protected static void startInCourse(Activity act) {
-        SharedPreferences prefs = act.getPreferences(MODE_PRIVATE);
+    protected static void beginCourse(Context ctx) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
         SharedPreferences.Editor edit = prefs.edit();
         edit.putBoolean(IN_COURSE, true);
         edit.apply();
     }
 
-    protected static void stopInCourse(Activity act) {
-        SharedPreferences prefs = act.getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor edit = prefs.edit();
-        edit.putBoolean(IN_COURSE, false);
-        edit.apply();
-    }
-
-    protected static void startEditingCourse(Activity act) {
-        SharedPreferences prefs = act.getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor edit = prefs.edit();
-        edit.putBoolean(IN_COURSE, true);
-        edit.apply();
-    }
-
-    protected static void stopEditingCourse(Activity act) {
-        SharedPreferences prefs = act.getPreferences(MODE_PRIVATE);
+    protected static void endCourse(Context ctx) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
         SharedPreferences.Editor edit = prefs.edit();
         edit.putBoolean(IN_COURSE, false);
         edit.apply();
@@ -71,7 +53,7 @@ public class FirstTimeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (FirstTimeActivity.isInCourse(this)) {
+        if (FirstTimeActivity.isInCourse(getApplicationContext())) {
             moveToNextActivity();
         }
 
@@ -104,6 +86,7 @@ public class FirstTimeActivity extends AppCompatActivity {
                             articleDao.insertAll(course.articles);
                             exerciseDao.insertAll(course.exercises);
                         });
+                        beginCourse(getApplicationContext());
                         moveToNextActivity();
                     }
 
@@ -119,7 +102,7 @@ public class FirstTimeActivity extends AppCompatActivity {
         });
 
         createCourseBtn.setOnClickListener(v -> {
-            startEditingCourse(this);
+            beginCourse(getApplicationContext());
             AppDatabase.databaseWriteExecutor.execute(() -> {
                 ArticleDao articleDao = AppDatabase.getDatabase(act).articleDao();
                 ExerciseDao exerciseDao = AppDatabase.getDatabase(act).exerciseDao();
